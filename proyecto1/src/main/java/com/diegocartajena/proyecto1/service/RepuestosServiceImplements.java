@@ -17,27 +17,26 @@ public class RepuestosServiceImplements implements RepuestosService {
 
     @Override
     public List<Repuestos> gettAllRepuestos() {
-        return repuestosRepository.findAll();
+        return List.of();
     }
 
     @Override
     public Repuestos getRepuestosById(Integer id) {
-        return repuestosRepository.findById(id).orElse(null);
+        return null;
     }
 
     @Override
     public Repuestos saveRepuestos(Repuestos repuesto) throws RuntimeException {
-        return repuestosRepository.save(repuesto);
+        return null;
     }
 
     @Override
     public Repuestos updateRepuestos(Integer id, Repuestos repuestos) {
-        return repuestosRepository.save(repuestos);
+        return null;
     }
 
     @Override
     public void deleteRepuestos(Integer id) {
-        repuestosRepository.deleteById(id);
 
     }
 }

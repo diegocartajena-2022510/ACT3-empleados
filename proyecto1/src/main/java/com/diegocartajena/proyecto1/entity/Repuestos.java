@@ -8,31 +8,20 @@ public class Repuestos {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    @Column(name = "idRepuesto")
+    @Column(name = "id_Repuesto")
     private Integer idRepuesto;
 
-    @Column(name = "nombreRepuesto")
+    @Column(name = "nombre_repuesto")
     private String nombreRepuesto;
 
-    @Column(name = "categoriaRepuesto")
+    @Column(name = "categoria_repuestos")
     private String categoriaRepuesto;
 
-    @Column(name = "precioCompra")
+    @Column(name = "precio_compra")
     private double precioCompra;
 
-    @Column(name = "precioVenta")
+    @Column(name = "precio_venta")
     private double precioVenta;
-
-    @Column(name = "idProveedor")
-    private Integer idProveedor;
-
-    public Integer getIdProveedor() {
-        return idProveedor;
-    }
-
-    public void setIdProveedor(Integer idProveedor) {
-        this.idProveedor = idProveedor;
-    }
 
     public Integer getIdRepuesto() {
         return idRepuesto;
