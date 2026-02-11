@@ -12,7 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/empleados")
 
-public class EmpleadoController {
+public class    EmpleadoController {
     private final EmpleadoService empleadoService;
 
     public EmpleadoController(EmpleadoService empleadoService) { this.empleadoService= empleadoService; }
