@@ -1,7 +1,9 @@
 package com.diegocartajena.proyecto1.controller;
 
 import com.diegocartajena.proyecto1.entity.Proveedores;
+import com.diegocartajena.proyecto1.entity.Repuestos;
 import com.diegocartajena.proyecto1.service.ProveedoresService;
+import com.diegocartajena.proyecto1.service.RepuestosService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +17,8 @@ import java.util.List;
 public class ProveedoresController {
     private final ProveedoresService proveedoresService;
 
-    public ProveedoresController(ProveedoresService ProveedoresService){this.proveedoresService=ProveedoresService;}
+    public ProveedoresController(ProveedoresService ProveedoresService){this.proveedoresService=ProveedoresService;
+    }
 
     @GetMapping
     public List<Proveedores> getAllProveedor() { return proveedoresService.getAllProveedores();}
@@ -49,7 +52,7 @@ public class ProveedoresController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> deleteEmpleado(@PathVariable Integer id){
+    public ResponseEntity<Object> deleteProveedor(@PathVariable Integer id){
         try{
             Proveedores proveedores=proveedoresService.getProveedoresById(id);
             proveedoresService.deleteProveedores(id);
@@ -58,6 +61,17 @@ public class ProveedoresController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Object> getProveedoresById(@PathVariable Integer id){
+        try{
+            Proveedores proveedores= proveedoresService.getProveedoresById(id);
+            return ResponseEntity.ok(proveedores);
+        }catch (IllegalArgumentException e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
 
 
 }
