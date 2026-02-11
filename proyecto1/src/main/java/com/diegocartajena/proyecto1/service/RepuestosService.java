@@ -7,6 +7,7 @@ import java.util.List;
 
 @Service
 public interface RepuestosService {
+
     List<Repuestos> gettAllRepuestos();
     Repuestos getRepuestosById(Integer id);
     Repuestos saveRepuestos(Repuestos repuesto) throws RuntimeException;
