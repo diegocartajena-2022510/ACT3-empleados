@@ -1,6 +1,7 @@
 package com.diegocartajena.proyecto1.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import org.hibernate.annotations.AnyDiscriminatorImplicitValues;
 
 import java.util.Date;
@@ -14,12 +15,17 @@ public class Ventas {
     @Column(name = "IdVenta")
     private Integer idVenta;
 
+    @NotBlank(message = "la fecha es obligatoria")
     @Column(name = "fechaVenta")
     private Date fechaVenta;
 
+    @NotNull(message = "este campo es obligatorio")
+    @Min(value=1,message = "el precio debe ser mayor a 1")
     @Column(name = "cantidad")
     private int cantidad;
 
+    @NotNull(message = "este campo es obligatorio")
+    @Min(value=1,message = "el precio debe ser mayor a 1")
     @Column(name = "total")
     private double total;
 

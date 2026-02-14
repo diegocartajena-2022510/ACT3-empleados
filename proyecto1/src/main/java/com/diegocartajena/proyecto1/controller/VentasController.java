@@ -5,9 +5,13 @@ import com.diegocartajena.proyecto1.service.VentasService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/ventas")
@@ -21,13 +25,10 @@ public class VentasController {
 
     @PostMapping
     public ResponseEntity<Object> createVentas(@Valid @RequestBody Ventas ventas){
-        try{
-            Ventas createdVentas= ventasService.saveVentas(ventas);
-            return new ResponseEntity<>(createdVentas, HttpStatus.CREATED);
 
-        }catch (IllegalArgumentException e){
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+        Ventas createdVentas= ventasService.saveVentas(ventas);
+        return new ResponseEntity<>(createdVentas, HttpStatus.CREATED);
+
     }
 
     @PutMapping("/{id}")
@@ -59,4 +60,17 @@ public class VentasController {
         }
     }
 
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public Map<String, String> handleValidationExceptions(MethodArgumentNotValidException e){
+        Map<String,String> errores= new HashMap<>();
+        e.getBindingResult().getAllErrors().forEach((error) -> {
+            String fieldName= ((FieldError) error).getField();
+            String errorMessage=error.getDefaultMessage();
+            errores.put(fieldName,errorMessage);
+        });
+        return errores;
+    }
 }
+
+
